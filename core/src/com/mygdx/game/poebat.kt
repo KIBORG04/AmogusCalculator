@@ -36,7 +36,7 @@ class Drop : ApplicationAdapter() {
         rainMusic = Gdx.audio.newMusic(Gdx.files.internal("rain.mp3"))
 
         // start the playback of the background music immediately
-        rainMusic?.setLooping(true)
+        rainMusic?.isLooping = true
         rainMusic?.play()
 
         // create the camera and the SpriteBatch

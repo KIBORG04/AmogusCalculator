@@ -70,10 +70,6 @@ project(":core") {
 repositories {
     mavenCentral()
 }
-dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
-}
 
 compileKotlin {
     kotlinOptions {
