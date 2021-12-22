@@ -18,9 +18,14 @@ class MarkButtonVariants {
         override val name: String = "/"
     }
 
+    class Equal : MarkButtonVariant {
+        override val name: String = "="
+    }
+
     val plusButtonStyle = Plus()
     val minusButtonStyle = Minus()
     val multiplyButtonStyle = Multiply()
     val divisionButtonStyle = Division()
+    val equalButtonStyle = Equal()
 
 }

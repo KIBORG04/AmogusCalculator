@@ -15,6 +15,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton
 import com.badlogic.gdx.utils.ScreenUtils
 import com.mygdx.game.buttonTypes.ButtonFactory
 import com.mygdx.game.buttonTypes.ButtonTypes
+import com.mygdx.game.buttonTypes.DigitButtonVariants
+import org.w3c.dom.Text
 
 
 class Calculator : ApplicationAdapter() {
@@ -30,43 +32,64 @@ class Calculator : ApplicationAdapter() {
     override fun create() {
         camera.setToOrtho(false, 350f, 512f)
 
-        Gdx.input.inputProcessor = stage;
+        Gdx.input.inputProcessor = stage
 
         mainTable.setFillParent(true)
-        mainTable.debug = true
+        //mainTable.debug = true
 
-        val buttonFactory = ButtonFactory()
-        
-        val button = buttonFactory.createButton(ButtonTypes().digitButtons.oneButtonStyle, skin)
-        button.addListener(object : InputListener() {
-            override fun touchDown(event: InputEvent?, x: Float, y: Float, pointer: Int, button: Int): Boolean {
-                println("touchDown 1")
-                return false
-            }
-        })
-        mainTable.add(button)
+        initializeButtons()
 
         stage.addActor(mainTable)
     }
 
     override fun render() {
         ScreenUtils.clear(0.75f, 0.75f, 0.75f, 1f)
-        stage.act(Gdx.graphics.deltaTime);
-        stage.draw();
+        stage.act(Gdx.graphics.deltaTime)
 
         camera.update()
 
-       // batch.projectionMatrix = camera.combined
+        batch.projectionMatrix = camera.combined
+        batch.begin()
+        batch.draw(background, 0f, 0f, 350f, 512f)
+        batch.end()
 
-      //  batch.begin()
-      //  batch.draw(background, 0f, 0f, 350f, 512f)
-      //  batch.end()
+        stage.draw()
+
     }
 
     override fun dispose() {
-        stage.dispose();
+        stage.dispose()
         batch.dispose()
         background.dispose()
     }
+
+    private fun initializeButtons() {
+        val buttonFactory = ButtonFactory()
+        val short = ButtonTypes.digitButtons
+        val buttonList = mutableSetOf<TextButton>()
+
+        buttonList.add(buttonFactory.createButton(short.oneButtonStyle, skin))
+        buttonList.add(buttonFactory.createButton(short.twoButtonStyle, skin))
+        buttonList.add(buttonFactory.createButton(short.threeButtonStyle, skin))
+        buttonList.add(buttonFactory.createButton(short.fourthButtonStyle, skin))
+        buttonList.add(buttonFactory.createButton(short.fiveButtonStyle, skin))
+        buttonList.add(buttonFactory.createButton(short.sixButtonStyle, skin))
+        buttonList.add(buttonFactory.createButton(short.sevenButtonStyle, skin))
+        buttonList.add(buttonFactory.createButton(short.eightButtonStyle, skin))
+        buttonList.add(buttonFactory.createButton(short.nineButtonStyle, skin))
+
+        var i = 1
+        for(button in buttonList) {
+            mainTable.add(button)
+
+            if(i % 3 == 0) {
+                mainTable.row()
+            }
+
+            i++
+        }
+
+    }
+
 }
 

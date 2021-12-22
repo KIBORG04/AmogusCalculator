@@ -1,6 +1,6 @@
 package com.mygdx.game.buttonTypes
 
-class ButtonTypes {
+object ButtonTypes {
     val digitButtons = DigitButtonVariants()
     val markButtons = MarkButtonVariants()
 }
