@@ -2,12 +2,11 @@ package com.mygdx.game
 
 import com.badlogic.gdx.ApplicationAdapter
 import com.badlogic.gdx.Gdx
+import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.graphics.OrthographicCamera
+import com.badlogic.gdx.graphics.Pixmap
 import com.badlogic.gdx.graphics.Texture
-import com.badlogic.gdx.graphics.g2d.BitmapFont
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
-import com.badlogic.gdx.scenes.scene2d.InputEvent
-import com.badlogic.gdx.scenes.scene2d.InputListener
 import com.badlogic.gdx.scenes.scene2d.Stage
 import com.badlogic.gdx.scenes.scene2d.ui.Skin
 import com.badlogic.gdx.scenes.scene2d.ui.Table
@@ -15,8 +14,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton
 import com.badlogic.gdx.utils.ScreenUtils
 import com.mygdx.game.buttonTypes.ButtonFactory
 import com.mygdx.game.buttonTypes.ButtonTypes
-import com.mygdx.game.buttonTypes.DigitButtonVariants
-import org.w3c.dom.Text
 
 
 class Calculator : ApplicationAdapter() {
@@ -34,7 +31,11 @@ class Calculator : ApplicationAdapter() {
 
         Gdx.input.inputProcessor = stage
 
-        mainTable.setFillParent(true)
+        val cell = mainTable.defaults()
+        cell.width(87.5f)
+        cell.height(95f)
+
+        mainTable.setSize(350f, 450f)
         //mainTable.debug = true
 
         initializeButtons()
@@ -65,24 +66,39 @@ class Calculator : ApplicationAdapter() {
 
     private fun initializeButtons() {
         val buttonFactory = ButtonFactory()
-        val short = ButtonTypes.digitButtons
         val buttonList = mutableSetOf<TextButton>()
 
-        buttonList.add(buttonFactory.createButton(short.oneButtonStyle, skin))
-        buttonList.add(buttonFactory.createButton(short.twoButtonStyle, skin))
-        buttonList.add(buttonFactory.createButton(short.threeButtonStyle, skin))
-        buttonList.add(buttonFactory.createButton(short.fourthButtonStyle, skin))
-        buttonList.add(buttonFactory.createButton(short.fiveButtonStyle, skin))
-        buttonList.add(buttonFactory.createButton(short.sixButtonStyle, skin))
-        buttonList.add(buttonFactory.createButton(short.sevenButtonStyle, skin))
-        buttonList.add(buttonFactory.createButton(short.eightButtonStyle, skin))
-        buttonList.add(buttonFactory.createButton(short.nineButtonStyle, skin))
+        buttonList.add(buttonFactory.createButton(ButtonTypes.markButtons.equalButtonStyle, skin))
+        buttonList.add(buttonFactory.createButton(ButtonTypes.emptyButtonStyle, skin))
+        buttonList.add(buttonFactory.createButton(ButtonTypes.markButtons.delSymbolButtonStyle, skin))
+        buttonList.add(buttonFactory.createButton(ButtonTypes.markButtons.clearButtonStyle, skin))
+
+        buttonList.add(buttonFactory.createButton(ButtonTypes.digitButtons.nineButtonStyle, skin))
+        buttonList.add(buttonFactory.createButton(ButtonTypes.digitButtons.eightButtonStyle, skin))
+        buttonList.add(buttonFactory.createButton(ButtonTypes.digitButtons.sevenButtonStyle, skin))
+        buttonList.add(buttonFactory.createButton(ButtonTypes.markButtons.divisionButtonStyle, skin))
+
+        buttonList.add(buttonFactory.createButton(ButtonTypes.digitButtons.sixButtonStyle, skin))
+        buttonList.add(buttonFactory.createButton(ButtonTypes.digitButtons.fiveButtonStyle, skin))
+        buttonList.add(buttonFactory.createButton(ButtonTypes.digitButtons.fourthButtonStyle, skin))
+        buttonList.add(buttonFactory.createButton(ButtonTypes.markButtons.multiplyButtonStyle, skin))
+
+        buttonList.add(buttonFactory.createButton(ButtonTypes.digitButtons.threeButtonStyle, skin))
+        buttonList.add(buttonFactory.createButton(ButtonTypes.digitButtons.twoButtonStyle, skin))
+        buttonList.add(buttonFactory.createButton(ButtonTypes.digitButtons.oneButtonStyle, skin))
+        buttonList.add(buttonFactory.createButton(ButtonTypes.markButtons.minusButtonStyle, skin))
+
+        buttonList.add(buttonFactory.createButton(ButtonTypes.emptyButtonStyle, skin))
+        buttonList.add(buttonFactory.createButton(ButtonTypes.digitButtons.zeroButtonStyle, skin))
+        buttonList.add(buttonFactory.createButton(ButtonTypes.emptyButtonStyle, skin))
+        buttonList.add(buttonFactory.createButton(ButtonTypes.markButtons.plusButtonStyle, skin))
 
         var i = 1
+        val buttonsByRow = 4
         for(button in buttonList) {
             mainTable.add(button)
 
-            if(i % 3 == 0) {
+            if(i % buttonsByRow == 0) {
                 mainTable.row()
             }
 
@@ -90,6 +106,5 @@ class Calculator : ApplicationAdapter() {
         }
 
     }
-
 }
 

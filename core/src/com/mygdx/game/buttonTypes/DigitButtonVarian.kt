@@ -1,9 +1,19 @@
 package com.mygdx.game.buttonTypes
 
+import com.badlogic.gdx.graphics.Color
+
 class DigitButtonVariants {
+
+    class Zero : DigitButtonVariant {
+        override val name: String = "0"
+    }
 
     class One : DigitButtonVariant {
         override val name: String = "1"
+
+        override val colorUp: Color = Color.YELLOW
+        override val colorDown: Color = Color.ORANGE
+        override val colorOver: Color = Color.GOLD
     }
 
     class Two : DigitButtonVariant {
@@ -38,6 +48,7 @@ class DigitButtonVariants {
         override val name: String = "9"
     }
 
+    val zeroButtonStyle = Zero()
     val oneButtonStyle = One()
     val twoButtonStyle = Two()
     val threeButtonStyle = Three()
