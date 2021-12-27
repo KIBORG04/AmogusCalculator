@@ -8,12 +8,11 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent
 import com.badlogic.gdx.scenes.scene2d.InputListener
 import com.badlogic.gdx.scenes.scene2d.ui.Skin
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
-import com.badlogic.gdx.scenes.scene2d.utils.Drawable
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle
 import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable
-import com.badlogic.gdx.scenes.scene2d.utils.TiledDrawable
+import com.mygdx.game.Calculator
 
-class ButtonFactory {
+class ButtonFactory(private val calculator: Calculator) {
 
     private fun generatePixmap(name: String, color: Color, skin: Skin) {
         if(!skin.has(name, Sprite::class.java)) {
@@ -27,10 +26,11 @@ class ButtonFactory {
         }
     }
 
-    private fun getTextButtonStyle(buttonType: ButtonVariant, skin: Skin): TextButtonStyle {
+    private fun getTextButtonStyle(buttonType: ButtonVariant): TextButtonStyle {
         val style = TextButtonStyle()
+        val skin = calculator.skin
 
-        style.font = skin.getFont("default-font")
+        style.font = skin.getFont("font-button")
         if(buttonType.name != "") {
             generatePixmap("${buttonType.name}-button-up", buttonType.colorUp, skin)
             generatePixmap("${buttonType.name}-button-down", buttonType.colorDown, skin)
@@ -44,19 +44,17 @@ class ButtonFactory {
         return style
     }
 
-    fun createButton(buttonType: ButtonVariant, skin: Skin): TextButton {
-        val button = TextButton(buttonType.name, getTextButtonStyle(buttonType, skin))
+    fun createButton(buttonType: ButtonVariant): TextButton {
+        val button = TextButton(buttonType.name, getTextButtonStyle(buttonType))
 
         val inputListener: InputListener = object : InputListener() {
             override fun touchDown(event: InputEvent, x: Float, y: Float, pointer: Int, button: Int): Boolean {
-                buttonType.touchDown()
+                buttonType.touchDown(calculator.label)
                 return false
             }
         }
 
         button.addListener(inputListener)
-
-        button.setSize(100f, 100f)
 
         return button
     }

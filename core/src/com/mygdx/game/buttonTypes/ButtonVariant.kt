@@ -1,7 +1,7 @@
 package com.mygdx.game.buttonTypes
 
 import com.badlogic.gdx.graphics.Color
-import com.badlogic.gdx.utils.Null
+import com.badlogic.gdx.scenes.scene2d.ui.Label
 
 interface ButtonVariant {
     val name: String
@@ -14,7 +14,7 @@ interface ButtonVariant {
     val colorOver: Color
         get() = Color.LIGHT_GRAY
 
-    fun touchDown() {}
+    fun touchDown(label: Label) { }
 
 }
 
@@ -22,17 +22,16 @@ interface DigitButtonVariant : ButtonVariant {
     override val category: Categories
         get() = Categories.DIGIT
 
-    override fun touchDown() {
-        println(name)
+    override fun touchDown(label: Label) {
+        label.setText("${label.text}$name")
     }
-
 }
 
 interface MarkButtonVariant : ButtonVariant {
     override val category: Categories
         get() = Categories.MARK
 
-    override fun touchDown() {
-        println(name)
+    override fun touchDown(label: Label) {
+        label.setText("${label.text}$name")
     }
 }
