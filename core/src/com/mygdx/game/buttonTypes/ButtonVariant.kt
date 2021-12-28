@@ -1,6 +1,7 @@
 package com.mygdx.game.buttonTypes
 
 import com.badlogic.gdx.graphics.Color
+import com.badlogic.gdx.scenes.scene2d.ui.Image
 import com.badlogic.gdx.scenes.scene2d.ui.Label
 
 interface ButtonVariant {
@@ -13,6 +14,9 @@ interface ButtonVariant {
         get() = Color.DARK_GRAY
     val colorOver: Color
         get() = Color.LIGHT_GRAY
+
+    val background: Image
+        get() = Image()
 
     fun touchDown(label: Label) { }
 

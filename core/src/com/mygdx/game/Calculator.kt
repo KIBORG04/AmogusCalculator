@@ -91,11 +91,11 @@ class Calculator(private val HEIGHT: Float, private val WIDTH: Float) : Applicat
         parameter.size = 35
         parameter.borderColor = Color.BLACK
         parameter.borderWidth = 2f
-        val font35 = generator.generateFont(parameter) // font size 35 pixels
+        val font35 = generator.generateFont(parameter)
         skin.add("font-button", font35)
 
         parameter.size = 50
-        val font50 = generator.generateFont(parameter) // font size 50 pixels
+        val font50 = generator.generateFont(parameter)
         skin.add("font-label", font50)
 
         generator.dispose() // don't forget to dispose to avoid memory leaks!

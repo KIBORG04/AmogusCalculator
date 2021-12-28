@@ -1,6 +1,9 @@
 package com.mygdx.game.buttonTypes
 
 import com.badlogic.gdx.graphics.Color
+import com.badlogic.gdx.graphics.Texture
+import com.badlogic.gdx.graphics.g2d.TextureRegion
+import com.badlogic.gdx.scenes.scene2d.ui.Image
 
 class DigitButtonVariants {
 
@@ -23,6 +26,9 @@ class DigitButtonVariants {
     class Two : DigitButtonVariant {
         override val name: String = "2"
 
+        override val background: Image =
+            Image(TextureRegion(Texture("amogus_spritesheet.png"), 1, 1, 127, 139))
+
         override val colorUp: Color = Color.GREEN
         override val colorDown: Color = Color.LIME
         override val colorOver: Color = Color.CHARTREUSE
@@ -30,6 +36,9 @@ class DigitButtonVariants {
 
     class Three : DigitButtonVariant {
         override val name: String = "3"
+
+        override val background: Image =
+            Image(TextureRegion(Texture("amogus_spritesheet.png"), 130, 1, 127, 139))
 
         override val colorUp: Color = Color.ROYAL
         override val colorDown: Color = Color.NAVY
@@ -62,7 +71,6 @@ class DigitButtonVariants {
 
     class Seven : DigitButtonVariant {
         override val name: String = "7"
-
     }
 
     class Eight : DigitButtonVariant {

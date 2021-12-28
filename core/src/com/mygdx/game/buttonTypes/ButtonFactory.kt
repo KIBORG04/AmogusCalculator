@@ -54,6 +54,7 @@ class ButtonFactory(private val calculator: Calculator) {
             }
         }
 
+        button.add(buttonType.background)
         button.addListener(inputListener)
 
         return button
