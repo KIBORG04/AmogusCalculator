@@ -38,18 +38,31 @@ class DigitButtonVariants {
 
     class Fourth : DigitButtonVariant {
         override val name: String = "4"
+
+        override val colorUp: Color = Color.CORAL
+        override val colorDown: Color = Color.RED
+        override val colorOver: Color = Color.SCARLET
     }
 
     class Five : DigitButtonVariant {
         override val name: String = "5"
+
+        override val colorUp: Color = Color.PINK
+        override val colorDown: Color = Color.MAGENTA
+        override val colorOver: Color = Color.PURPLE
     }
 
     class Six : DigitButtonVariant {
         override val name: String = "6"
+
+        override val colorUp: Color = Color(0.251f, 0.879f, 0.816f, 1f)
+        override val colorDown: Color = Color(0.282f, 0.816f, 0.8f, 1f)
+        override val colorOver: Color = Color(0f, 0.808f, 0.8197f, 1f)
     }
 
     class Seven : DigitButtonVariant {
         override val name: String = "7"
+
     }
 
     class Eight : DigitButtonVariant {
