@@ -41,7 +41,7 @@ class MarkButtonVariants {
                 val result: Any = engine.eval(label.text.toString())
                 label.setText("$result")
             } catch (e: javax.script.ScriptException) {
-                label.setText("ERROR")
+                label.setText("AMOGUS!")
             }
 
         }
