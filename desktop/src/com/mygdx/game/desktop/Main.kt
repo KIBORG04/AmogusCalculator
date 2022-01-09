@@ -8,7 +8,6 @@ const val HEIGHT = 512
 const val WIDTH = 350
 
 fun main() {
-
     val config = Lwjgl3ApplicationConfiguration()
     config.setTitle("Amogus")
     config.setResizable(false)
